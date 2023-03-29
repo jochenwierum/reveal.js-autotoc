@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Autotoc</title>
+
+    <meta name="description" content="Autotoc">
+    <meta name="author" content="Jochen Wierum">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme">
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+
+        <section>
+            <section data-toc>
+                <h1>Autotoc</h1>
+            </section>
+
+            <section data-toc>
+                <h2>Table of Content</h2>
+
+                <div data-toc-insert></div>
+            </section>
+        </section>
+
+        <section data-toc>
+            <h1>Topic 1</h1>
+            <p>Here goes topic 1</p>
+        </section>
+
+        <section>
+            <section data-toc>
+                <h1>Topic 2</h1>
+                <p>Here goes topic 2</p>
+            </section>
+
+            <section data-toc data-toc-title="Subtopic a">
+                <h2>Topic 2a</h2>
+                <p>Here goes topic 2a</p>
+            </section>
+
+            <section data-toc data-toc-title="Subtopic b">
+                <h2>Topic 2b</h2>
+                <p>Here goes topic 2b</p>
+            </section>
+        </section>
+
+        <section data-toc>
+            <h1>Summary</h1>
+            <p>Summary goes here</p>
+        </section>
+
+        <section>
+            <h1>Appendix</h1>
+            <p>Not in TOC!</p>
+        </section>
+    </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="../autotoc.js"></script>
+<script>
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    center: true,
+    hash: true,
+    showHiddenSlides: true,
+
+    autotoc: {
+      mode: 'manual',
+      levels: 'nesting',
+      defaultListStyles: 'ol,ul'
+    },
+
+    plugins: [AutoToc]
+  });
+
+</script>
+
+</body>
+</html>
