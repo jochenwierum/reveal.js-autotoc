@@ -83,7 +83,8 @@
     autotoc: {
       mode: 'manual',
       levels: 'nesting',
-      defaultListStyles: 'ol,ul'
+      defaultListStyles: 'ol,ul',
+      transformationFn: s => s.toUpperCase(),
     },
 
     plugins: [AutoToc]

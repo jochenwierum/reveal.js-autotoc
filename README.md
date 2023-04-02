@@ -4,7 +4,10 @@ Automatically create Tables of Content (TOC) in your slides!
 
 ## Simple Setup
 
-1. Download autotoc.js and save it in your presentation sources.
+1. Download autotoc.js and save it in your presentation sources:
+  ```shell
+   wget https://github.com/jochenwierum/reveal.js-autotoc/raw/main/autotoc.js
+   ```
 2. Include autotoc.js in your presentation file:
    ```html
    <script src="autotoc.js"></script>
@@ -71,6 +74,26 @@ If no heading could be found or if the text is not appropriate, the text can be 
   <p>More content here</p>
 </section>
 ```
+
+## Transforming titles
+
+It is also possible to transform the titles. 
+This can be done by specifying a `transformationFn` function.
+
+```html
+<script>
+  Reveal.initialize({
+    autotoc: {
+       transformationFn: (title, slide) => title.toUpperCase()
+    },
+    plugins: [AutoToc]
+  });
+</script>
+```
+
+The first parameter is the identified text (either from data-toc-title or from a heading).
+The second parameter is the slide (a `<section>` tag).
+
 
 ## Overwriting Levels
 

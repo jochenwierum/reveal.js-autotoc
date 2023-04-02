@@ -1,5 +1,5 @@
-!function (e, t) { 'object' == typeof exports && 'undefined' != typeof module ? module.exports = t() : 'function' == typeof define && define.amd ? define(t) : (e = 'undefined' != typeof globalThis ? globalThis : e || self).AutoToc = t();}
-(this, (function () {
+!function (e, t) { 'object' == typeof exports && 'undefined' != typeof module ? module.exports = t() : 'function' == typeof define && define.amd ? define(t) : (e = 'undefined' != typeof globalThis ? globalThis : e || self).AutoToc = t();}(this, (
+function () {
     'use strict';
 
     const MODE_HORIZONTAL = 'horizontal';
@@ -31,6 +31,12 @@
             console.warn('Unknown autotoc levels: ' + config.levels);
           }
           result['levels'] = LEVELS_HEADING;
+        }
+
+        if (typeof config.transformationFn === 'function') {
+          result['transformationFn'] = config.transformationFn;
+        } else {
+          result['transformationFn'] = s => s;
         }
 
         result['defaultListStyles'] = config.defaultListStyles || 'ul';
@@ -78,7 +84,7 @@
         return { level: 1, title: '???' };
       };
 
-      const getTocInfo = (levels, slide) => {
+      const getTocInfo = (config, slide) => {
         let groups = new Set(slide.dataset.tocGroups === undefined ?
           [] :
           slide.dataset.tocGroups.split(/\s*,\s*/).map(e => e.toUpperCase())
@@ -92,6 +98,7 @@
           htmlInfo = firstTitleTag(slide);
           title = htmlInfo.title;
         }
+        title = config.transformationFn(title, slide);
 
         let level = 0;
         let levelString = slide.dataset.tocLevel;
@@ -99,7 +106,7 @@
           level = parseInt(levelString);
         }
         if (level === 0 || isNaN(level)) {
-          if (levels === LEVELS_HEADING) {
+          if (config.levels === LEVELS_HEADING) {
             if (htmlInfo === null) {
               htmlInfo = firstTitleTag(slide);
             }
@@ -206,7 +213,7 @@
         const config = getConfig();
         const entries = reveal.getSlides()
           .filter(slide => isRelevant(config['mode'], slide))
-          .map(slide => getTocInfo(config['levels'], slide));
+          .map(slide => getTocInfo(config, slide));
 
         targets.forEach(target => fillTarget(config, target, entries));
       };
