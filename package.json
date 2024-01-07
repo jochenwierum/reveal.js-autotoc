@@ -1,0 +1,34 @@
+{
+  "name": "reveal.js-autotoc",
+  "version": "1.1.0",
+  "description": "Automatically create Tables of Content (TOC) in your reveal.js slides!",
+  "scripts": {
+    "build": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denehyg/jochenwierum/reveal.js-autotoc.git"
+  },
+  "keywords": [
+    "reveal",
+    "autotoc"
+  ],
+  "author": "Jochen Wierum",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jochenwierum/reveal.js-autotoc/issues"
+  },
+  "homepage": "https://github.com/jochenwierum/reveal.js-autotoc/issues",
+  "devDependencies": {
+    "@babel/core": "^7.23.7",
+    "@babel/preset-env": "^7.23.7",
+    "core-js": "^3.35.0",
+    "gulp": "^4.0.2",
+    "rollup": "^4.9.4",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4"
+  }
+}
+
