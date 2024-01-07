@@ -1,20 +1,9 @@
-const pkg = require('./package.json');
-
-const {rollup} = require('rollup');
-const terser = require('@rollup/plugin-terser');
-const babel = require('@rollup/plugin-babel').default;
-const commonjs = require('@rollup/plugin-commonjs');
-const resolve = require('@rollup/plugin-node-resolve').default;
-
-const gulp = require('gulp');
-
-const banner = `/*!
-* reveal.js-autotoc ${pkg.version}
-* ${pkg.homepage}
-* MIT licensed
-*
-* Copyright (C) 2022-2023 Jochen Wierum
-*/\n`;
+import {rollup} from 'rollup';
+import {default as terser} from '@rollup/plugin-terser';
+import babel from '@rollup/plugin-babel';
+import {default as commonjs} from '@rollup/plugin-commonjs';
+import {nodeResolve} from '@rollup/plugin-node-resolve';
+import gulp from 'gulp';
 
 const babelConfig = {
     babelHelpers: 'bundled',
@@ -46,11 +35,11 @@ gulp.task('build', () =>
     rollup({
         input: './autotoc.js',
         plugins: [
-            resolve(),
+            nodeResolve(),
             commonjs(),
             babel({
                 ...babelConfig,
-                ignore: [/node_modules\/(?!(highlight\.js|marked)\/).*/],
+                ignore: [/node_modules\/.*/],
             }),
             terser()
         ]

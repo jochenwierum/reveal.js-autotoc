@@ -14,6 +14,7 @@
     "autotoc"
   ],
   "author": "Jochen Wierum",
+  "type": "module",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jochenwierum/reveal.js-autotoc/issues"
